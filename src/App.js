@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+     
+import React, { Component } from 'react';
 import './App.css';
+import Dashboard from './components/Dashboard';
+import Header from "./components/Layout/Header";
+import "bootstrap/dist/css/bootstrap.min.css"; 
+import { BrowserRouter as Router , Route } from "react-router-dom";
+import AddProject from './components/Project/AddProject';
+import {Provider} from "react-redux";
+import store from "./store";
+import UpdateProject from './components/Project/UpdateProject';
+import MapContainer from './components/Project/MapContainer';
+import MyMapComponent from './components/Project/MyMapComponent';
 
-function App() {
-  return (
+class App extends Component{
+ render(){ 
+  return ( 
+    <Provider store = {store}>
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+ 
+            <Header />  
+            
+            <Route exact path="/dashboard" component={Dashboard}/>
+            <Route exact path="/addProject" component={AddProject}/>
+            <Route exact path="/updateProject/:id" component={UpdateProject}/>
+            <Route exact path="/mapContainer/:id" component={MyMapComponent}/>
+
+            
+    
+       
     </div>
+    </Router> 
+    </Provider>
+    
   );
+} 
 }
 
 export default App;
+ 
